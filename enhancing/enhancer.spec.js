@@ -68,4 +68,28 @@ describe("enhancer", () => {
             expect(failedItem.enhancement).toBe(enchancementStat - 1)
         })
     })
+    describe("get", () =>{
+        it("should change the name to include the enhancement level if the enhancement level is greater than 0  ", () =>{
+            let durabilityStat = 27
+            let enchancementStat = 17
+            let item = {
+                name: "Buster sword",
+                durability: durabilityStat,
+                enhancement: enchancementStat
+            }
+            const enhancedItem = get(item)
+            expect(enhancedItem.name).toEqual(name =`[+${item.enhancement}] ${item.name}`)
+        })
+        it("Should return the name unchanged if the enhancement level is 0", () => {
+            let durabilityStat = 27
+            let enchancementStat = 0
+            let item = {
+                name: "Buster sword",
+                durability: durabilityStat,
+                enhancement: enchancementStat
+            }
+            const enhancedItem = get(item)
+            expect(enhancedItem.name).toEqual(item.name)
+        })
+    })
 })
